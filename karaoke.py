@@ -21,12 +21,13 @@ class KaraokeLocal(SmallSMILHandler):
         num_elemento = 1
         self.cadena = ""
         for diccionario in self.lista:
-            self.cadena += ("-Elemento" + str(num_elemento) + 
-                       ":" + diccionario["etiqueta"])
+            self.cadena += ("-Elemento" + str(num_elemento) +
+                            ":" + diccionario["etiqueta"])
             atributos = list(diccionario)
             for atributo in atributos:
-                if atributo != "etiqueta" and diccionario[atributo] != "":    
-                    self.cadena += ("\t" + atributo + "=" + diccionario[atributo])
+                if atributo != "etiqueta" and diccionario[atributo] != "":
+                    self.cadena += ("\t" + atributo + "="
+                                    + diccionario[atributo])
             self.cadena += ("\n")
             num_elemento += 1
         return self.cadena
@@ -35,24 +36,25 @@ class KaraokeLocal(SmallSMILHandler):
         json_file = json.dumps(Karaoke.lista)
         karaoke_json = open("karaoke.json", "w")
         karaoke_json.write(json_file)
-        
+
     def do_local(self):
         for diccionario in self.lista:
             atributos = list(diccionario)
-            for atributo in atributos:
-                if atributo == "src" and diccionario[atributo][:7] == "http://":
-                    url = diccionario[atributo]
-                    url_reves = diccionario[atributo][::-1]
+            for atribut in atributos:
+                if atribut == "src" and diccionario[atribut][:7] == "http://":
+                    url = diccionario[atribut]
+                    url_reves = diccionario[atribut][::-1]
                     index = url_reves.index("/")
                     file_name = url_reves[:index][::-1]
                     urllib.request.urlretrieve(url, file_name)
-                    diccionario[atributo] = file_name 
+                    diccionario[atribut] = file_name
         return self.lista
-     
+
+
 if __name__ == "__main__":
- 
+
     try:
-         fichero = (sys.argv[1])   
+        fichero = (sys.argv[1])
     except IndexError:
             sys.exit("Usage: python3 karaoke.py file.smil")
 
