@@ -22,7 +22,7 @@ class KaraokeLocal(SmallSMILHandler):
         self.cadena = ""
         for diccionario in self.lista:
             self.cadena += ("-Elemento" + str(num_elemento) +
-                            ":" + diccionario["etiqueta"])
+                            ":" + diccionario["Etiqueta"])
             atributos = list(diccionario)
             for atributo in atributos:
                 if atributo != "etiqueta" and diccionario[atributo] != "":
